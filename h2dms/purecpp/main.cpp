@@ -17,7 +17,12 @@ int main(int argc, char* argv[])
   //cout << hp.grad_lnwf(pos, 1).transpose() << endl;
   //cout << hp.lap_lnwf(pos, 0) << endl;
   //cout << hp.lap_lnwf(pos, 1) << endl;
-  H2Hamiltonian ham(hp);
+  Matrix ions(hp.ions);
+  H2Hamiltonian ham(ions, hp);
   cout << ham.kinetic(pos) << endl;
+  cout << ham.ee(pos) << endl;
+  cout << ham.ei(pos) << endl;
+  cout << ham.potential(pos) << endl;
+  cout << ham.local(pos) << endl;
   return 0;
 }
