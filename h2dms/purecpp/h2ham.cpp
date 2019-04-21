@@ -16,9 +16,9 @@ const {
   {
     grad = _wf.grad_lnwf(pos, i);
     lap = _wf.lap_lnwf(pos, i);
-    kin += hbs2m*(lap+grad.squaredNorm());
+    kin += lap+grad.squaredNorm();
   }
-  return kin;
+  return -hbs2m*kin;
 }
 
 double H2Hamiltonian::ei(const Matrix& pos)
