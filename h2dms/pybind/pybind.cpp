@@ -19,7 +19,7 @@ PYBIND11_MODULE(h2hp, m)
     .def(py::init<double, double, double>())
     .def("lnwf", &PadePairJastrow::lnwf)
     .def("grad_lnwf", &PadePairJastrow::grad_lnwf)
-    //.def("lap_lnwf", &PadePairJastrow::lap_lnwf)
+    .def("lap_lnwf", &PadePairJastrow::lap_lnwf)
     ;
   py::class_<H2Hamiltonian>(m, "H2Hamiltonian")
     .def(py::init<const Matrix&, const H2HartreeProduct&>())
