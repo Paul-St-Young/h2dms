@@ -1,6 +1,6 @@
 NAME=mmh
 CC=g++
-OBJS=main.o h2hp.o
+OBJS=main.o h2hp.o h2ham.o
 HEADERS=common.h h2wf.h
 #OFLAGS=-O0 -g
 OFLAGS=-O3
