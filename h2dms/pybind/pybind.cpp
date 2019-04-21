@@ -21,5 +21,6 @@ PYBIND11_MODULE(h2hp, m)
     .def("ei", &H2Hamiltonian::ei)
     .def("ee", &H2Hamiltonian::ee)
     .def("potential", &H2Hamiltonian::potential)
+    .def("local", &H2Hamiltonian::local)
     ;
 }
