@@ -8,12 +8,13 @@ public:
   static constexpr double hbs2m=0.5, e2=1.0;  // Hartree atomic units
   H2Hamiltonian(const Matrix& ions, const WaveFunction& wf);
   double kinetic(const Matrix& pos)const;
+  double ii(const Matrix& pos)const{return _ii_pot;};
   double ei(const Matrix& pos)const;
   double ee(const Matrix& pos)const;
   double potential(const Matrix& pos)const;
   double local(const Matrix& pos)const;
 private:
-  const Matrix& _ions;
+  Matrix _ions;
   const WaveFunction& _wf;
   double _ii_pot;
 };
