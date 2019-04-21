@@ -20,8 +20,9 @@ int main(int argc, char* argv[])
   Matrix ions(hp.ions);
   H2Hamiltonian ham(ions, hp);
   cout << ham.kinetic(pos) << endl;
-  cout << ham.ee(pos) << endl;
+  cout << ham.ii(pos) << endl;
   cout << ham.ei(pos) << endl;
+  cout << ham.ee(pos) << endl;
   cout << ham.potential(pos) << endl;
   cout << ham.local(pos) << endl;
   return 0;
