@@ -26,6 +26,21 @@ def get_fd_grads(wf, dx):
       grads[i, idim] = (lnwfp-lnwfm)/(2*dx)
   return grads
 
+def get_fd_laps(wf, dx):
+  nelec, ndim = pos.shape
+  laps = np.zeros(nelec)
+  lnwf0 = wf.lnwf(pos)
+  for i in range(nelec):
+    d2lnwf = 0.0
+    for idim in range(ndim):
+      pos[i, idim] += dx
+      lnwfp = wf.lnwf(pos)
+      pos[i, idim] -= 2*dx
+      lnwfm = wf.lnwf(pos)
+      pos[i, idim] += dx
+      laps[i] += (lnwfp+lnwfm-2*lnwf0)/(dx**2)
+  return laps
+
 def test_lnwf():
   assert np.isclose(-.4, hp.lnwf(pos))
 
@@ -38,20 +53,14 @@ def test_grad(atol=1e-6):
   assert np.allclose(grads, grads0, atol=atol)
 
 def test_lap(atol=1e-4):
-  lnwf0 = hp.lnwf(pos)
-  for i in range(2):
-    d2lnwf0 = hp.lap_lnwf(pos, i)
-    d2lnwf = 0.0
-    for idim in range(3):
-      pos[i, idim] += dx
-      lnwfp = hp.lnwf(pos)
-      pos[i, idim] -= 2*dx
-      lnwfm = hp.lnwf(pos)
-      pos[i, idim] += dx
-      d2lnwf += (lnwfp+lnwfm-2*lnwf0)/(dx**2)
-    assert np.allclose(d2lnwf, d2lnwf0, atol=atol)
+  wf = hp
+  laps0 = np.array([
+    wf.lap_lnwf(pos, i) for i in range(len(pos))
+  ])
+  laps = get_fd_laps(wf, dx)
+  assert np.allclose(laps, laps0, atol=atol)
 
-def test_j2pade(atol=1e-6):
+def test_j2pade_grad(atol=1e-6):
   from pybind.h2hp import PadePairJastrow
   uee = PadePairJastrow(0.5, 0.0, 0.1)
   wf = uee
@@ -61,8 +70,19 @@ def test_j2pade(atol=1e-6):
   ])
   assert np.allclose(grads, grads0, atol=atol)
 
+def test_j2pade_lap(atol=1e-4):
+  from pybind.h2hp import PadePairJastrow
+  uee = PadePairJastrow(0.5, 0.0, 0.1)
+  wf = uee
+  laps0 = np.array([
+    wf.lap_lnwf(pos, i) for i in range(len(pos))
+  ])
+  laps = get_fd_laps(wf, dx)
+  assert np.allclose(laps, laps0, atol=atol)
+
 if __name__ == '__main__':
-  #test_grad()
-  #test_lap()
-  test_j2pade()
+  test_grad()
+  test_lap()
+  test_j2pade_grad()
+  test_j2pade_lap()
 # end __main__
