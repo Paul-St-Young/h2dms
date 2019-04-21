@@ -4,6 +4,7 @@ namespace py=pybind11;
 
 #include "h2hp.h"
 #include "h2ham.h"
+#include "j2pade.h"
 
 PYBIND11_MODULE(h2hp, m)
 {
@@ -13,6 +14,12 @@ PYBIND11_MODULE(h2hp, m)
     .def("lnwf", &H2HartreeProduct::lnwf)
     .def("grad_lnwf", &H2HartreeProduct::grad_lnwf)
     .def("lap_lnwf", &H2HartreeProduct::lap_lnwf)
+    ;
+  py::class_<PadePairJastrow>(m, "PadePairJastrow")
+    .def(py::init<double, double, double>())
+    .def("lnwf", &PadePairJastrow::lnwf)
+    .def("grad_lnwf", &PadePairJastrow::grad_lnwf)
+    //.def("lap_lnwf", &PadePairJastrow::lap_lnwf)
     ;
   py::class_<H2Hamiltonian>(m, "H2Hamiltonian")
     .def(py::init<const Matrix&, const H2HartreeProduct&>())
