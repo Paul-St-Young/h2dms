@@ -2,6 +2,7 @@
 #include "common.h"
 #include "h2hp.h"
 #include "h2ham.h"
+#include "j2pade.h"
 
 using namespace std;
 
@@ -19,11 +20,17 @@ int main(int argc, char* argv[])
   //cout << hp.lap_lnwf(pos, 1) << endl;
   Matrix ions(hp.ions);
   H2Hamiltonian ham(ions, hp);
-  cout << ham.kinetic(pos) << endl;
-  cout << ham.ii(pos) << endl;
-  cout << ham.ei(pos) << endl;
-  cout << ham.ee(pos) << endl;
-  cout << ham.potential(pos) << endl;
-  cout << ham.local(pos) << endl;
+  //cout << ham.kinetic(pos) << endl;
+  //cout << ham.ii(pos) << endl;
+  //cout << ham.ei(pos) << endl;
+  //cout << ham.ee(pos) << endl;
+  //cout << ham.potential(pos) << endl;
+  //cout << ham.local(pos) << endl;
+  PadePairJastrow jee(1.0, 0.1, 0.0);
+  cout << jee.lnwf(pos) << endl;
+  cout << jee.grad_lnwf(pos, 0).transpose() << endl;
+  cout << jee.grad_lnwf(pos, 1).transpose() << endl;
+  cout << jee.lap_lnwf(pos, 0) << endl;
+  cout << jee.lap_lnwf(pos, 1) << endl;
   return 0;
 }

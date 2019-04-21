@@ -3,8 +3,8 @@
 #include "common.h"
 class WaveFunction
 { // use constant wavefunction as base class
-  //  throw exception if base clas functions are called
-  //  i.e. block confusing polymorphism
+  //  throw exception if base class functions are called
+  //   i.e. block confusing polymorphism
 public:
   WaveFunction(){}
   virtual double lnwf(const Matrix &pos)
