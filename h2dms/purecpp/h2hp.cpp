@@ -19,8 +19,7 @@ double H2HartreeProduct::lnwf(const Matrix& pos)
   return -_alpha*val;
 }
 
-H2HartreeProduct::Vector
-H2HartreeProduct::grad_lnwf(const Matrix& pos, const int i)
+Vector H2HartreeProduct::grad_lnwf(const Matrix& pos, const int i)
 {
   Vector rvec(ndim);
   rvec = pos.row(i)-ions.row(i);

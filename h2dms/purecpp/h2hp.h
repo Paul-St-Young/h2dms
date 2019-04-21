@@ -1,15 +1,10 @@
 #ifndef H2_HARTREE_PRODUCT_H
 #define H2_HARTREE_PRODUCT_H
-#include <Eigen/Dense>
-
-
-class H2HartreeProduct
+#include "h2wf.h"
+class H2HartreeProduct : public WaveFunction
 {
 public:
-  typedef Eigen::VectorXd Vector;
-  typedef Eigen::MatrixXd Matrix;
   Matrix ions;
-  static const int natom=2, ndim=3;
   H2HartreeProduct(double rbond, double alpha);
   // wf value
   double lnwf(const Matrix& pos);
