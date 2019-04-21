@@ -11,5 +11,6 @@ public:
   double d2fpade(const double r) const;
   double lnwf(const Matrix& pos)const;
   Vector grad_lnwf(const Matrix& pos, const int i)const;
+  double lap_lnwf(const Matrix& pos, const int i)const;
 };
 #endif

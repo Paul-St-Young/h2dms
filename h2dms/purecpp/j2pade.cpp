@@ -62,3 +62,17 @@ const {
   }
   return -grad;
 }
+
+double PadePairJastrow::lap_lnwf(const Matrix& pos, const int i)
+const {
+  int nptcl = pos.rows();
+  double r=0.0, lap=0.0, du=0.0;
+  for (int j=0; j<nptcl; j++)
+  {
+    if (i==j) continue;
+    r = (pos.row(i)-pos.row(j)).norm();
+    du = dfpade(r);
+    lap += d2fpade(r)+(ndim-1)*du/r;
+  }
+  return -lap;
+}
