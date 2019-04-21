@@ -7,12 +7,12 @@ public:
   Matrix ions;
   H2HartreeProduct(double rbond, double alpha);
   // wf value
-  double lnwf(const Matrix& pos);
+  double lnwf(const Matrix& pos) const;
   // wf ratio
-  Vector grad_lnwf(const Matrix& pos, const int i);
-  double lap_lnwf(const Matrix& pos, const int i);
+  Vector grad_lnwf(const Matrix& pos, const int i) const;
+  double lap_lnwf(const Matrix& pos, const int i) const;
   // getters
-  double get_rbond(){return _rbond;}
+  double get_rbond()const{return _rbond;}
   // setters
   void set_rbond(double rbond){_rbond=rbond;}
 private:
