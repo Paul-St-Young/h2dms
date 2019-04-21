@@ -12,7 +12,7 @@ def test_grad():
   ])
   dx = 1e-3
   for i in range(2):
-    dlnwf0 = hp.diff_lnwf(pos, i)
+    dlnwf0 = hp.grad_lnwf(pos, i)
     dlnwf = np.zeros(3)
     for idim in range(3):
       pos[i, idim] += dx

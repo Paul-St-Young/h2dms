@@ -16,6 +16,7 @@ int main(int argc, char* argv[])
   Matrix pos(natom, ndim);
   pos << -0.5, 0, 0,
           0.5, 0, 0;
-  cout << hp.diff_lnwf(pos, 1) << endl;
+  cout << hp.grad_lnwf(pos, 0) << endl;
+  cout << hp.grad_lnwf(pos, 1) << endl;
   return 0;
 }

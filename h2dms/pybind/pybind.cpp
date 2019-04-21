@@ -9,6 +9,6 @@ PYBIND11_MODULE(h2hp, m)
   py::class_<H2HartreeProduct>(m, "H2HartreeProduct")
     .def(py::init<double, double>())
     .def("lnwf", &H2HartreeProduct::lnwf)
-    .def("diff_lnwf", &H2HartreeProduct::diff_lnwf)
+    .def("grad_lnwf", &H2HartreeProduct::grad_lnwf)
     ;
 }

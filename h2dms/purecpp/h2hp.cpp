@@ -12,7 +12,6 @@ H2HartreeProduct::H2HartreeProduct(
 double H2HartreeProduct::lnwf(const Matrix& pos)
 {
   double val = 0.0;
-  double r;
   for (int iatom=0; iatom<natom; iatom++)
   {
     val += (pos.row(iatom) - ions.row(iatom)).norm();
@@ -21,11 +20,9 @@ double H2HartreeProduct::lnwf(const Matrix& pos)
 }
 
 H2HartreeProduct::Vector
-H2HartreeProduct::diff_lnwf(const Matrix& pos, const int i)
+H2HartreeProduct::grad_lnwf(const Matrix& pos, const int i)
 {
-  double rmag;
   Vector rvec(ndim);
   rvec = pos.row(i)-ions.row(i);
-  rmag = rvec.norm();
-  return -_alpha*rvec/rmag;
+  return -_alpha*rvec/rvec.norm();
 }
