@@ -2,7 +2,7 @@ NAME=h2hp
 CXX=g++
 OFLAGS=-O3
 CFLAGS=$(OFLAGS) -shared -fPIC
-OBJS=h2hp.o pybind.o
+OBJS=h2hp.o h2ham.o pybind.o
 LIB=$(NAME).so
 
 %.o : %.cpp
