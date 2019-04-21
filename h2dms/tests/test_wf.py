@@ -13,6 +13,9 @@ pos = np.array([
 ])
 dx = 1e-3
 
+def test_lnwf():
+  assert np.isclose(-.4, hp.lnwf(pos))
+
 def test_grad(atol=1e-6):
   for i in range(2):
     dlnwf0 = hp.grad_lnwf(pos, i)

@@ -15,6 +15,7 @@ public:
   double lnwf(const Matrix& pos);
   // wf ratio
   Vector grad_lnwf(const Matrix& pos, const int i);
+  double lap_lnwf(const Matrix& pos, const int i);
   // getters
   double get_rbond(){return _rbond;}
   // setters

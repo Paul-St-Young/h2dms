@@ -10,5 +10,6 @@ PYBIND11_MODULE(h2hp, m)
     .def(py::init<double, double>())
     .def("lnwf", &H2HartreeProduct::lnwf)
     .def("grad_lnwf", &H2HartreeProduct::grad_lnwf)
+    .def("lap_lnwf", &H2HartreeProduct::lap_lnwf)
     ;
 }
