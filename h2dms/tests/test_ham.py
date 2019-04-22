@@ -4,6 +4,7 @@ import numpy as np
 import sys
 sys.path.insert(0, '..')
 from pybind.h2hp import H2HartreeProduct, H2Hamiltonian
+from pybind.h2hp import ProductWaveFunction
 
 # test system
 hp = H2HartreeProduct(1.4, 1.0)
@@ -14,11 +15,13 @@ pos = np.array([
 dx = 1e-3
 
 def test_kinetic():
-  ham = H2Hamiltonian(hp.ions, hp)
+  wf = ProductWaveFunction(1.4, 1.0, 0, 0, 0)
+  ham = H2Hamiltonian(hp.ions, wf)
   assert np.isclose(9, ham.kinetic(pos))
 
 def test_potential():
-  ham = H2Hamiltonian(hp.ions, hp)
+  wf = ProductWaveFunction(1.4, 1.0, 0, 0, 0)
+  ham = H2Hamiltonian(hp.ions, wf)
   ii = 1./1.4
   ei = -2*(1./0.2+1./1.2)
   ee = 1.0
